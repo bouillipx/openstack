@@ -221,6 +221,19 @@ class Solution(object):
             curr = tmp
         return result
 
+    def rob(self, nums):    # 198
+        # f(0) = nums[0]
+        # f(1) = max(nums(1), nums(0))
+        # f(k) = max(f(k-2) + nums[k], f(k-1))
+        prev = 0
+        now = 0
+        for i in nums:
+            prev, now = now, max(prev + i, now)
+        return now
+
+    def isPowerOfFour(self, num):   # 342
+        pass
+
 class ListNode(object):
     def __init__(self, x):
         self.val = x
