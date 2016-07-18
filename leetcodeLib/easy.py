@@ -1,4 +1,9 @@
 __author__ = 'bouilli'
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
 class Solution(object):
     def reverse(self, n):
         return n[::-1]
@@ -231,20 +236,33 @@ class Solution(object):
             prev, now = now, max(prev + i, now)
         return now
 
-    def isPowerOfFour(self, num):   # 342
+    def isPowerOfFour(self, num):    # 342
+        # format = '{:b}'.format(num)
+        # format = format[::-1]
+        # count = format.count('1')
+        # if count == 1 and num > 0:
+        #     ind = format.find('1')
+        #     if ind % 2 == 0:
+        #         return True
+        # return False
+        import math
+        return round(math.log(num, 4)) == math.log(num, 4) if num > 0 else False
+
+    def removeElement(self, nums, val):    # 27
+        count = nums.count(val)
+        for i in xrange(count):
+            nums.remove(val)
+        return len(nums)
+
+    def plusOne(self, digits):  # 66
+        num = ''.join(map(str, digits))
+        result = list(str(int(num) + 1))
+        return map(int, result)
+
+    def generate(self, numRows):    # 118
         pass
 
-class ListNode(object):
-    def __init__(self, x):
-        self.val = x
-        self.next = None
 
 
 test = Solution()
-print test.reverseVowels('hello')
-
-import re
-inputstr = "hello crifan, nihao crifan"
-replacestr = re.sub(r"hello (\w+), nihao \1", "\g<1>", inputstr)
-print replacestr
-print inputstr
+print test.isPowerOfFour(16)
