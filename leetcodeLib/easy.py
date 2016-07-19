@@ -260,8 +260,26 @@ class Solution(object):
         return map(int, result)
 
     def generate(self, numRows):    # 118
-        pass
+        if numRows > 1:
+            result = [[1]]
+            for i in xrange(numRows - 1):
+                row = [1]
+                for j in xrange(len(result[i]) - 1):
+                    row.append(result[i][j] + result[i][j+1])
+                row.append(1)
+                result.append(row)
+            return result
+        elif numRows == 1:
+            return [[1]]
+        else:
+            return []
 
+        """
+        res = []
+        for i in xrange(1, numRows):
+            res += map(lambda x, y: x + y, res[-1] + [0], [0] + res[-1])
+        return res[:numRows]
+        """
 
 
 test = Solution()
