@@ -275,12 +275,35 @@ class Solution(object):
             return []
 
         """
-        res = []
+        res = [[1]]
         for i in xrange(1, numRows):
-            res += map(lambda x, y: x + y, res[-1] + [0], [0] + res[-1])
+            res += [map(lambda x, y: x + y, res[-1] + [0], [0] + res[-1])]
         return res[:numRows]
         """
 
+    def removeDuplicates(self, nums):   # 26
+        # l = len(nums)
+        # prev = nums[l - 1]
+        # for i in xrange(l - 1):
+        #     print "last:",nums[l - 2 - i]
+        #     print "prev:",prev
+        #     if nums[l - 2 - i] == prev:
+        #         nums.pop(l - 2 - i)
+        #     else:
+        #         prev = nums[l - 2 - i]
+        #     print "nums:",nums
+        # return len(nums)
+        if not nums:
+            return 0
+
+        newTail = 0
+
+        for i in range(1, len(nums)):
+            if nums[i] != nums[newTail]:
+                newTail += 1
+                nums[newTail] = nums[i]
+
+        return newTail + 1
 
 test = Solution()
-print test.isPowerOfFour(16)
+print test.removeDuplicates([1,1,1,2,2,3,3,4])
